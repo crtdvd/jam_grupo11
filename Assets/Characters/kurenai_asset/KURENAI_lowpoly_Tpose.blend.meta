@@ -1,64 +1,9 @@
 fileFormatVersion: 2
-guid: d1cd258ca710c694db3e7bc66287129b
+guid: 125754060e4e1e34fa5ef27db77672ea
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: black
-    second: {fileID: 2100000, guid: 03301e853e5d66b4ea91a6043ca3a450, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cloth
-    second: {fileID: 2100000, guid: c9b3971c40e106940bb9d39b60c5ad9d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cloth_bottom
-    second: {fileID: 2100000, guid: 5b503224d34bfc943bffb92aecdf70b4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: flappy
-    second: {fileID: 2100000, guid: d31820b668abff54aa575a87ab3a53aa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: glow
-    second: {fileID: 2100000, guid: 1e655274bf547a0488973f2e8bb8f04b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: holo
-    second: {fileID: 2100000, guid: 1686727a07bd1864793526a95cec2030, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: light
-    second: {fileID: 2100000, guid: afad3e5f1138d354aa2153021961f730, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: metal1
-    second: {fileID: 2100000, guid: df83a49a11a8a054b8169cce821336eb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: metal2
-    second: {fileID: 2100000, guid: 7d848e5bf322eb446b50839f84261bce, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: red
-    second: {fileID: 2100000, guid: e12c2f44b04aa1f41a5c1a188ba04bf3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: smoke
-    second: {fileID: 2100000, guid: b695d4b6643aecf43a0d7262c1a20fa3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
