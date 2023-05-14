@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float damage = 15f;
+    public float health = 100f;
+    public float energy = 100f;
+
     private Animator animator;
     public GameObject arma;
     private Rigidbody rb;
@@ -11,6 +15,11 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 360f;
     public Vector3 input;
     bool bIsAttacking = false;
+    float AttackTimer;
+
+    [Header("UI")]
+
+    public Canvas canvas;
 
     private void Awake()
     {
@@ -26,19 +35,33 @@ public class PlayerController : MonoBehaviour
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         Look();
+        updateIU();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        //wait time for restore energy
+        AttackTimer -= Time.deltaTime;
+        if (AttackTimer <= 0f)
         {
-            animator.SetInteger("AttackIndex", Random.Range(0, 2));
-            animator.SetTrigger("Attack");
-
-            bIsAttacking = true;
+            energy += 10;
+            AttackTimer = 3f;
         }
+    }
+
+    void updateIU()
+    {
+        //
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if (health > 0f)
+        {
+            Move();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Attack();
+            }
+        }
     }
 
     void Move()
@@ -70,6 +93,39 @@ public class PlayerController : MonoBehaviour
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
         }
+    }
+
+    void Attack()
+    {
+        animator.SetInteger("AttackIndex", Random.Range(0, 2));
+        animator.SetTrigger("Attack");
+        energy -= 10f;
+        AttackTimer = 10f;
+        bIsAttacking = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyAttack")
+        {
+            TakeDamage(5f);
+        }
+    }
+
+    public void TakeDamage(float inDamage)
+    {
+        health -= inDamage;
+
+        if (health <= 0)
+        {
+            // Instantiate(EnemyPrefab, GetRandonWaypoint(), Quaternion.identity);
+            Invoke(nameof(die), 0.5f);
+        }
+    }
+
+    void die()
+    {
+
     }
 
     public void ActivarColliderArma()

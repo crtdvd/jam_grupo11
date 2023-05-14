@@ -13,8 +13,7 @@ public class BasicEnemyScript : MonoBehaviour
 
     public LayerMask playerLayer;
 
-    public float health = 120;
-
+    public float health = 30f;
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked = false;
@@ -76,7 +75,7 @@ public class BasicEnemyScript : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int inDamage)
+    public void TakeDamage(float inDamage)
     {
         health -= inDamage;
 
@@ -100,9 +99,9 @@ public class BasicEnemyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "arma")
+        if (other.gameObject.tag == "PlayerAttack")
         {
-            TakeDamage(15);
+            TakeDamage(player.GetComponent<PlayerController>().damage);
         }
     }
 
