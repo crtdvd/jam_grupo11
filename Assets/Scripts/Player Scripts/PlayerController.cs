@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+    private Animator animator;
     public GameObject arma;
-    public Rigidbody rb;
+    private Rigidbody rb;
     public float speed = 15f;
     public float turnSpeed = 360f;
     public Vector3 input;
+    bool bIsAttacking = false;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+    }
     private void Start()
     {
         DesactivarColliderArma();
@@ -23,7 +29,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            animator.SetInteger("AttackIndex", Random.Range(0, 2));
             animator.SetTrigger("Attack");
+
+            bIsAttacking = true;
         }
     }
 
@@ -38,7 +47,14 @@ public class PlayerController : MonoBehaviour
         Vector3 playerVelocity = (transform.forward * input.normalized.magnitude) * speed;
         animator.SetFloat("vel", playerVelocity.magnitude);
         playerVelocity.y = rb.velocity.y;
-        rb.velocity = playerVelocity;
+        if (bIsAttacking)
+        {
+            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+        }
+        else
+        {
+            rb.velocity = playerVelocity;
+        }
     }
 
     void Look()
@@ -63,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void DesactivarColliderArma()
     {
+        bIsAttacking = false;
         arma.SetActive(false);
     }
 }
