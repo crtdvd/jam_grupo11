@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,11 +16,12 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 360f;
     public Vector3 input;
     bool bIsAttacking = false;
-    float AttackTimer;
+    float AttackTimer = 0f;
 
     [Header("UI")]
 
-    public Canvas canvas;
+    public Image healthBar;
+    public Image energyBar;
 
     private void Awake()
     {
@@ -39,16 +41,26 @@ public class PlayerController : MonoBehaviour
 
         //wait time for restore energy
         AttackTimer -= Time.deltaTime;
-        if (AttackTimer <= 0f)
+        if (AttackTimer <= 0f && energy < 100f)
         {
-            energy += 10;
-            AttackTimer = 3f;
+            energy += 25;
+            AttackTimer = 1.5f;
         }
     }
 
     void updateIU()
     {
-        //
+        if(healthBar)
+        {
+            float smoothHealth = Mathf.Lerp(healthBar.fillAmount, health / 100f, 0.5f);
+            healthBar.fillAmount = smoothHealth;
+        }
+
+        if(energyBar)
+        {
+            float smoothenergy = Mathf.Lerp(energyBar.fillAmount, energy / 100f, 0.2f);
+            energyBar.fillAmount = smoothenergy;
+        }
     }
 
     private void FixedUpdate()
@@ -57,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             Move();
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && energy > 0f)
             {
                 Attack();
             }
@@ -100,7 +112,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("AttackIndex", Random.Range(0, 2));
         animator.SetTrigger("Attack");
         energy -= 10f;
-        AttackTimer = 10f;
+        AttackTimer = 5f;
         bIsAttacking = true;
     }
 
