@@ -13,11 +13,13 @@ public class PausaController : MonoBehaviour
     public GameObject dialogo3;
     public GameObject dialogo4;
     public GameObject dialogo5;
+    public GameObject salida;
 
     void Update()
     {
-        if (panelPausa.activeSelf == true || panelOptions.activeSelf == true || mainPanel.activeSelf == true || dialogo1.activeSelf == true
-       || dialogo2.activeSelf == true || dialogo3.activeSelf == true || dialogo4.activeSelf == true || dialogo5.activeSelf == true || inicio.activeSelf == true) // Validar que el panel de pausa esta activado
+        if (panelPausa.activeInHierarchy || panelOptions.activeInHierarchy || mainPanel.activeInHierarchy 
+        || dialogo1.activeInHierarchy || dialogo2.activeInHierarchy || dialogo3.activeInHierarchy 
+        || dialogo4.activeInHierarchy || dialogo5.activeInHierarchy || inicio.activeInHierarchy || salida.activeInHierarchy) // Validar que el panel de pausa esta activado
         {
             Time.timeScale = 0f; // Pausar el tiempo de juego
         }

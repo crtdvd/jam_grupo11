@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public Image healthBar;
     public Image energyBar;
+    public GameObject pantallaFinal;
 
     private void Awake()
     {
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     void die()
     {
-
+        pantallaFinal.SetActive(true);
     }
 
     public void ActivarColliderArma()
