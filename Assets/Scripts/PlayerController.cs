@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         if (input != Vector3.zero)
         {
-            var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+            var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 0));
 
             var skededInput = matrix.MultiplyPoint3x4(input);
 
